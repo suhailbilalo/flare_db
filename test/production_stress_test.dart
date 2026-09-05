@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flare_db/flare_db.dart';
 import 'package:test/test.dart';
 
+import 'test_helper.dart';
+
 void main() {
   group('Production Stress & Concurrency Tests', () {
     const dbPath = 'test_production_stress.db';
@@ -12,11 +14,7 @@ void main() {
     setUp(() {
       if (File(dbPath).existsSync()) File(dbPath).deleteSync();
       if (File('$dbPath.wal').existsSync()) File('$dbPath.wal').deleteSync();
-      if (Platform.isWindows) {
-        libPath = File('.dart_tool/lib/flare_db.dll').absolute.path;
-      } else {
-        libPath = '.dart_tool/lib/libflare_db.so';
-      }
+      libPath = getTestLibraryPath();
       db = FlareDatabase(dbPath, libraryPath: libPath);
     });
 

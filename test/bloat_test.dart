@@ -5,6 +5,8 @@ import 'dart:io';
 import 'package:flare_db/flare_db.dart';
 import 'package:test/test.dart';
 
+import 'test_helper.dart';
+
 void main() {
   group('Flare Bloat Tests', () {
     const dbPath = 'test_bloat.db';
@@ -14,7 +16,7 @@ void main() {
     setUp(() {
       if (File(dbPath).existsSync()) File(dbPath).deleteSync();
       if (File('$dbPath.wal').existsSync()) File('$dbPath.wal').deleteSync();
-      libPath = File('.dart_tool/lib/flare_db.dll').absolute.path;
+      libPath = getTestLibraryPath();
     });
 
     tearDown(() {
@@ -54,10 +56,6 @@ void main() {
       db!.sync();
       final sizeAfterReinsert = File(dbPath).lengthSync();
       print('Size after 1,000 re-inserts: $sizeAfterReinsert');
-
-      // If B-Tree deletion works, re-inserting shouldn't grow the file much
-      // compared to the first insert, as it should reuse the freed space/nodes.
-      // Actually, since we use a free list for data blocks, it should definitely stay stable.
 
       expect(
         sizeAfterReinsert,

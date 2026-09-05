@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flare_db/flare_db.dart';
 import 'package:test/test.dart';
 
+import 'test_helper.dart';
+
 void main() {
   group('Flare Query Tests', () {
     const dbPath = 'test_query.db';
@@ -11,10 +13,7 @@ void main() {
     setUp(() {
       if (File(dbPath).existsSync()) File(dbPath).deleteSync();
       if (File('$dbPath.wal').existsSync()) File('$dbPath.wal').deleteSync();
-      String? libPath;
-      if (Platform.isWindows) {
-        libPath = File('.dart_tool/lib/flare_db.dll').absolute.path;
-      }
+      final libPath = getTestLibraryPath();
       db = FlareDatabase(dbPath, libraryPath: libPath);
     });
 

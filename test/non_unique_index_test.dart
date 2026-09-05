@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flare_db/flare_db.dart';
 import 'package:test/test.dart';
 
+import 'test_helper.dart';
+
 void main() {
   group('Non-Unique Index Tests', () {
     const dbPath = 'test_non_unique.db';
@@ -12,7 +14,7 @@ void main() {
     setUp(() {
       if (File(dbPath).existsSync()) File(dbPath).deleteSync();
       if (File('$dbPath.wal').existsSync()) File('$dbPath.wal').deleteSync();
-      libPath = File('.dart_tool/lib/flare_db.dll').absolute.path;
+      libPath = getTestLibraryPath();
     });
 
     tearDown(() {
