@@ -1,16 +1,47 @@
 import 'dart:io';
 
+/// Dynamically locates the compiled native library inside .dart_tool for test runs across Linux, macOS, and Windows.
 String getTestLibraryPath() {
-  if (Platform.isWindows) {
-    return File('.dart_tool/lib/flare_db.dll').absolute.path;
-  } else if (Platform.isLinux) {
-    final file = File('.dart_tool/lib/libflare_db.so');
-    if (file.existsSync()) return file.absolute.path;
-    return 'libflare_db.so';
-  } else if (Platform.isMacOS) {
-    final file = File('.dart_tool/lib/libflare_db.dylib');
-    if (file.existsSync()) return file.absolute.path;
-    return 'libflare_db.dylib';
+  final targetName = _targetLibraryFileName;
+
+  final dartToolDir = Directory('.dart_tool');
+  if (dartToolDir.existsSync()) {
+    try {
+      final matches = dartToolDir
+          .listSync(recursive: true, followLinks: false)
+          .whereType<File>()
+          .where((f) {
+            final fileName = f.path
+                .split(Platform.pathSeparator)
+                .last
+                .toLowerCase();
+            return fileName == targetName.toLowerCase() ||
+                fileName == 'libflare_db.so' ||
+                fileName == 'flare_db.dll' ||
+                fileName == 'libflare_db.dylib';
+          })
+          .toList();
+
+      if (matches.isNotEmpty) {
+        return matches.first.absolute.path;
+      }
+    } catch (_) {}
   }
-  return 'libflare_db.so';
+
+  final fallback = File('.dart_tool/lib/$targetName');
+  if (fallback.existsSync()) {
+    return fallback.absolute.path;
+  }
+
+  return targetName;
+}
+
+String get _targetLibraryFileName {
+  if (Platform.isWindows) {
+    return 'flare_db.dll';
+  } else if (Platform.isMacOS) {
+    return 'libflare_db.dylib';
+  } else {
+    return 'libflare_db.so';
+  }
 }
