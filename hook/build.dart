@@ -14,17 +14,23 @@ void main(List<String> args) async {
       sources: ['src/flare.cpp'],
       libraries: [
         if (input.config.code.targetOS == OS.windows) 'bcrypt',
-        if (input.config.code.targetOS == OS.android ||
-            input.config.code.targetOS == OS.linux)
-          'stdc++',
+        if (input.config.code.targetOS == OS.linux) 'stdc++',
+        if (input.config.code.targetOS == OS.android) ...[
+          'c++_static',
+          'c++abi',
+        ],
         if (input.config.code.targetOS == OS.macOS ||
             input.config.code.targetOS == OS.iOS)
           'c++',
       ],
       flags: [
+        '-fno-exceptions',
+        '-fno-rtti',
         if (input.config.buildCodeAssets &&
-            input.config.code.targetOS == OS.android)
+            input.config.code.targetOS == OS.android) ...[
           '-Wl,-z,max-page-size=16384',
+          '-static-libstdc++',
+        ],
       ],
     );
     await cbuilder.run(

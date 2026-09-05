@@ -21,7 +21,7 @@ Add `flare_db` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flare_db: ^0.0.1-beta.2
+  flare_db: ^0.0.1-beta.3
 ```
 
 ## 🛠 Usage

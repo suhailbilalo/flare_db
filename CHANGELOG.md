@@ -1,3 +1,7 @@
+## 0.0.1-beta.3
+
+* **Android C++ Linking & Stability Fix**: Statically linked against `c++_static` and `c++abi` with `-fno-exceptions` and `-fno-rtti` to completely eliminate `__gxx_personality_v0` and `libc++shared.so` runtime errors on Android.
+
 ## 0.0.1-beta.2
 
 * **C++ Runtime Linking Fix**: Explicitly linked against `stdc++` on Android/Linux and `c++` on macOS/iOS to resolve missing C++ personality symbols (`__gxx_personality_v0`).
