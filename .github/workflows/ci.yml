@@ -42,9 +42,9 @@ jobs:
       - name: Build Example App (Linux / Windows / macOS)
         working-directory: example
         run: |
-          if ("${{ matrix.os }}" == "ubuntu-latest") {
+          if ('${{ matrix.os }}' -eq 'ubuntu-latest') {
             flutter build linux --release
-          } elseif ("${{ matrix.os }}" == "windows-latest") {
+          } elseif ('${{ matrix.os }}' -eq 'windows-latest') {
             flutter build windows --release
           } else {
             flutter build macos --release
