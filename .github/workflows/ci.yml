@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  build_and_test:
+    name: Build & Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.x'
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies (Package)
+        run: flutter pub get
+
+      - name: Run Static Analysis
+        run: flutter analyze
+
+      - name: Run Unit & Stress Tests
+        run: flutter test
+
+      - name: Install Dependencies (Example App)
+        working-directory: example
+        run: flutter pub get
+
+      - name: Build Example App (Linux / Windows / macOS)
+        working-directory: example
+        run: |
+          if ("${{ matrix.os }}" == "ubuntu-latest") {
+            flutter build linux --release
+          } elseif ("${{ matrix.os }}" == "windows-latest") {
+            flutter build windows --release
+          } else {
+            flutter build macos --release
+          }
+        shell: pwsh
