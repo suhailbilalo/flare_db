@@ -1,4 +1,4 @@
-import 'package:flare_db/flare.dart';
+import 'package:flare_db/flare_db.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -21,7 +21,7 @@ Add `flare_db` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flare_db: ^0.0.1-beta.0
+  flare_db: ^0.0.1-beta.1
 ```
 
 ## 🛠 Usage
@@ -29,7 +29,7 @@ dependencies:
 ### Initialization
 
 ```dart
-import 'package:flare_db/flare.dart';
+import 'package:flare_db/flare_db.dart';
 
 // Open a secure database with 32-byte AES key
 final db = FlareDatabase(

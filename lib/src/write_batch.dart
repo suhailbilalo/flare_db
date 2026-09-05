@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../flare.dart';
+import '../flare_db.dart';
 
 /// A write batch allows grouping multiple set and delete operations
 /// into a single atomic batch commit.

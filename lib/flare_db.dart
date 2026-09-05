@@ -91,9 +91,15 @@ class FlareCore implements Finalizable {
   }
 
   static String get _defaultLibraryName {
-    if (Platform.isWindows) return 'flare.dll';
-    if (Platform.isMacOS || Platform.isIOS) return 'flare.framework/flare';
-    if (Platform.isAndroid || Platform.isLinux) return 'libflare.so';
+    if (Platform.isWindows) {
+      return 'flare_db.dll';
+    }
+    if (Platform.isMacOS || Platform.isIOS) {
+      return 'flare_db.framework/flare_db';
+    }
+    if (Platform.isAndroid || Platform.isLinux) {
+      return 'libflare_db.so';
+    }
     throw UnsupportedError('Unsupported platform');
   }
 

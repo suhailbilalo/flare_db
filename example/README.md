@@ -1,6 +1,6 @@
 # My Storage Engine Example
 
-A sample Flutter application demonstrating the high-level Document API of `flare`.
+A sample Flutter application demonstrating the high-level Document API of `flare_db`.
 
 ## Features Demonstrated
 

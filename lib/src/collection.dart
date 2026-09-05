@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:uuid/uuid.dart';
 
-import '../flare.dart';
+import '../flare_db.dart';
 
 typedef FromFirestore<T> = T Function(
   DocumentSnapshot<Map<String, dynamic>> snapshot,

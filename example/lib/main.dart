@@ -1,4 +1,4 @@
-import 'package:flare_db/flare.dart';
+import 'package:flare_db/flare_db.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:path_provider/path_provider.dart';
 

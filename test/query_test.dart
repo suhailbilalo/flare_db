@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flare_db/flare.dart';
+import 'package:flare_db/flare_db.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -13,7 +13,7 @@ void main() {
       if (File('$dbPath.wal').existsSync()) File('$dbPath.wal').deleteSync();
       String? libPath;
       if (Platform.isWindows) {
-        libPath = File('.dart_tool/lib/flare.dll').absolute.path;
+        libPath = File('.dart_tool/lib/flare_db.dll').absolute.path;
       }
       db = FlareDatabase(dbPath, libraryPath: libPath);
     });

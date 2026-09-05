@@ -1,7 +1,11 @@
+## 0.0.1-beta.1
+
+* **Package & Entry Point Update**: Renamed package references and tests to `flare_db`, and primary library entry point to `flare_db.dart`.
+* **Stable API & Test Coverage**: Verified all tests and static analysis.
+
 ## 0.0.1-beta.0
 
 * **Initial Beta Release**: Stable API, rigorous test coverage, and complete production verification.
-
 * **Flare Initial Release**: Complete transformation from a raw key-value store to a full-featured Document Database.
 * **Firebase-style API**: Familiar `CollectionReference` and `DocumentReference` interfaces.
 * **Strong Typing**: Added `withConverter<T>` for seamless mapping between JSON and Dart classes.
