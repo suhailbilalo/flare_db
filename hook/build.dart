@@ -12,7 +12,15 @@ void main(List<String> args) async {
       name: packageName,
       assetName: 'flare_bindings_generated.dart',
       sources: ['src/flare.cpp'],
-      libraries: [if (input.config.code.targetOS == OS.windows) 'bcrypt'],
+      libraries: [
+        if (input.config.code.targetOS == OS.windows) 'bcrypt',
+        if (input.config.code.targetOS == OS.android ||
+            input.config.code.targetOS == OS.linux)
+          'stdc++',
+        if (input.config.code.targetOS == OS.macOS ||
+            input.config.code.targetOS == OS.iOS)
+          'c++',
+      ],
       flags: [
         if (input.config.buildCodeAssets &&
             input.config.code.targetOS == OS.android)

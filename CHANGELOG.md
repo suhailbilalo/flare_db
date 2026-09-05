@@ -1,3 +1,7 @@
+## 0.0.1-beta.2
+
+* **C++ Runtime Linking Fix**: Explicitly linked against `stdc++` on Android/Linux and `c++` on macOS/iOS to resolve missing C++ personality symbols (`__gxx_personality_v0`).
+
 ## 0.0.1-beta.1
 
 * **Package & Entry Point Update**: Renamed package references and tests to `flare_db`, and primary library entry point to `flare_db.dart`.

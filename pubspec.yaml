@@ -1,6 +1,6 @@
 name: flare_db
 description: A high-performance, Firebase-style Document Database optimized for Android 15. Features AES-256 encryption, crash resilience, and multi-thread support.
-version: 0.0.1-beta.1
+version: 0.0.1-beta.2
 homepage: https://github.com/suhailbilalo/flare_db
 repository: https://github.com/suhailbilalo/flare_db
 issue_tracker: https://github.com/suhailbilalo/flare_db/issues
